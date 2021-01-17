@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::post('/user/datatable', 'Api\UserApiController@index');
+
 Route::get('/', 'HomeController@index');
 Auth::routes();
 
