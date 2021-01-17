@@ -16,26 +16,28 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'HomeController@index');
 Auth::routes();
-Route::middleware('role:superadmin')->get('/superadmin', function () {
-    return view('superadmin.index');
-})->name('superadmin');
 
-Route::middleware('role:admin')->get('/admin', function () {
-    return view('admin.index');
-})->name('admin');
 
-Route::middleware('role:spv_man_admin')->get('/spv', function () {
-    return view('spv_man_admin.index');
-})->name('spv');
+Route::group(['middleware' => ['role:superadmin']], function () {
+    Route::get('/superadmin', 'HomeController@IndexSuperAdmin')->name('superadmin');
+});
 
-Route::middleware('role:head')->get('/head', function () {
-    return view('head.index');
-})->name('head');
+Route::group(['middleware' => ['role:admin']], function () {
+    Route::get('/admin', 'HomeController@IndexAdmin')->name('admin');
+});
 
-Route::middleware('role:employee')->get('/employee', function () {
-    return view('employee.index');
-})->name('employee');
+Route::group(['middleware' => ['role:spv_man_admin']], function () {
+    Route::get('/spv', 'HomeController@IndexSpvManAdmin')->name('spv');
+});
 
-Route::middleware('role:security')->get('/security', function () {
-    return view('security.index');
-})->name('security');
+Route::group(['middleware' => ['role:head']], function () {
+    Route::get('/head', 'HomeController@IndexHead')->name('head');
+});
+
+Route::group(['middleware' => ['role:employee']], function () {
+    Route::get('/employee', 'HomeController@IndexEmployee')->name('employee');
+});
+
+Route::group(['middleware' => ['role:security']], function () {
+    Route::get('/security', 'HomeController@IndexSecurity')->name('security');
+});
