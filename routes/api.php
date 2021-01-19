@@ -29,3 +29,4 @@ Route::group(['prefix' => 'auth'], function () {
 });
 
 Route::get('/user/datatable', 'Api\UserApiController@index');
+Route::post('/user/listuser', 'Api\UserApiController@userDatatable');

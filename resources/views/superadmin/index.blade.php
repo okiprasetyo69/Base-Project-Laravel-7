@@ -72,12 +72,13 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered" id="tableUser" width="100%" cellspacing="0">
+                            <table class="table table-striped table-bordered" id="tableUser" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
                                         <th>No</th>
                                         <th>Name</th>
                                         <th>Email</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody class="rowData">

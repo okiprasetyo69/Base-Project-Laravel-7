@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\BaseApiController;
+use App\Http\Controllers\Api\QueryFilters\UserQueryFilter;
 use App\User;
 use Illuminate\Support\Facades\Validator;
 use Auth;
@@ -74,5 +75,19 @@ class UserApiController extends BaseApiController
     public function user(Request $request)
     {
         return response()->json($request->user());
+    }
+
+    public function userDatatable(Request $request)
+    {
+        $userQueryFilter = new UserQueryFilter($request->all());
+        $userQuery = User::orderBy('id', 'ASC');
+        if ($userQueryFilter->get_search_text() != null) {
+            $userQuery = $userQuery->where("name", "like", "%" . $userQueryFilter->get_search_text() . "%");
+        }
+        $count = (clone $userQuery)->count();
+        $result = $userQuery->limit($userQueryFilter->get_length())->offset($userQueryFilter->get_start());
+        $data_get = $result->get();
+        $data = $this->set_datatable_response($userQueryFilter->get_draw(), $count, $result->get());
+        return $this->success_response_datatable();
     }
 }

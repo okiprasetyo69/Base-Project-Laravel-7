@@ -17,6 +17,7 @@ class BaseQueryFilter
         $this->page = isset($request['page']) ? $request['page'] : 0;
         $this->search_text = isset($request['search_text']) ? $request['search_text'] : null;
         $this->id = isset($request['id']) ? $request['id'] : null;
+        $this->with_trash = isset($request['with_trash']) ? $request['with_trash'] : false;
     }
     public function get_draw()
     {
