@@ -77,3 +77,10 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 # Base-Project-Laravel-7
+Installations
+1. Clone or download Base Project
+2. Create file .env 
+3. Create database. Same with database name in file .env
+4. Generate key (php artisan key:generate) for adding key in file .env
+5. Execute migration (php artisan migrate)
+6. Execute seeder (php artisan migrate:fresh --seed)
