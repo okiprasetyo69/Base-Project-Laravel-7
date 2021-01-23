@@ -52,7 +52,7 @@ function listTable(){
                 previous: "‹",
                 next: "›"
             },
-            info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ Masjid",
+            info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ Pengguna",
             aria: {
                 paginate: {
                     previous: "Previous",
@@ -65,7 +65,7 @@ function listTable(){
                 contentType: "application/json",
                 type: "POST",
                 data: function (d) {
-                    console.log(d);
+                    //console.log(d);
                     var dataparam = {
                         draw: d.draw,
                         page: d.start / d.length + 1,
@@ -75,6 +75,7 @@ function listTable(){
                     return JSON.stringify(dataparam);
                 },
                 dataSrc: function (response) {
+                    console.log(response)
                     return response.data;
                 }
         },
@@ -97,8 +98,8 @@ function listTable(){
         columnDefs: [
             {
                 targets: 0,
-                searchable: true,
-                orderable: true,
+                searchable: false,
+                orderable: false,
                 createdCell: function (td, cellData, rowData, row, col) {
                     $(td).addClass("text-center");
                     $(td).html(tableUser.page.info().start + row + 1);
@@ -106,24 +107,24 @@ function listTable(){
             },
             {
                 targets: 1,
-                searchable: true,
-                orderable: true,
+                searchable: false,
+                orderable: false,
                 createdCell: function (td, cellData, rowData, row, col) {
                     $(td).addClass("text-center");
                 }
             },
             {
                 targets: 2,
-                searchable: true,
-                orderable: true,
+                searchable: false,
+                orderable: false,
                 createdCell: function (td, cellData, rowData, row, col) {
                     $(td).addClass("text-center");
                 }
             },
             {
                 targets: 3,
-                searchable: true,
-                orderable: true,
+                searchable: false,
+                orderable: false,
                 createdCell: function (td, cellData, rowData, row, col) {
                     $(td).addClass("text-center");
                     var html =
